@@ -121,6 +121,18 @@ app.post('/api/inject/:version', authMiddleware, (req, res) => {
   });
 });
 
+app.post('/api/clean', authMiddleware, (req, res) => {
+  // Placeholder cleanup route for the frontend.
+  const { package: packageName, full_clean } = req.body || {};
+
+  res.json({
+    success: true,
+    cleaned: true,
+    package: packageName || null,
+    full_clean: Boolean(full_clean)
+  });
+});
+
 function generateAntiBanConfig(gameConfig) {
   return {
     level: 'high',
