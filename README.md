@@ -39,3 +39,17 @@ Os instaladores serão gerados em `dist/`.
 ## Site de download
 
 Abra `site/index.html` em um navegador ou hospede essa pasta como um site estático. Ele mostra links para os instaladores gerados em `dist/`.
+
+## App Android
+
+Um app nativo Android que carrega o painel web em uma WebView está disponível em `cheat-panel/android/`.
+
+### Compilar o APK
+
+```bash
+cd cheat-panel/android
+./gradlew build
+./gradlew assembleRelease  # Gerar APK de release
+```
+
+Veja [cheat-panel/android/README.md](cheat-panel/android/README.md) para detalhes completos.
