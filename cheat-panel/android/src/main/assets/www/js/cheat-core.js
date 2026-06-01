@@ -123,6 +123,14 @@ class DualCheatCore {
     return offsets[version] || offsets.normal;
   }
 
+  getDefaultLibrary(version) {
+    const defaultLibs = {
+      normal: 'a.lib',
+      max: 'a.lib'
+    };
+    return this.config.targetLibrary || defaultLibs[version] || 'a.lib';
+  }
+
   async injectCheat() {
     if (!this.config.version || this.config.version === 'auto') {
       await this.scanForGames();
@@ -138,9 +146,8 @@ class DualCheatCore {
     try {
       const payload = {
         version,
-        package: version === 'max' ? 'com.dts.freefiremax' : 'com.dts.freefireth',
         offsets,
-        targetLibrary: this.config.targetLibrary,
+        targetLibrary: this.getDefaultLibrary(version),
         features: {
           aimbot: this.config.aimbot,
           esp: this.config.esp,
@@ -234,14 +241,18 @@ class DualCheatCore {
   async injectAndroid(payload) {
     const lib = payload && payload.targetLibrary ? payload.targetLibrary : this.config.targetLibrary;
     console.log('Injetando Android na biblioteca:', lib, payload);
-    // Aqui você implementaria o fluxo nativo que aplica o payload na .lib
-    await this.sleep(200);
+    await this.injectIntoLibrary(lib, payload.encrypted);
   }
 
   async injectIOS(payload) {
     const lib = payload && payload.targetLibrary ? payload.targetLibrary : this.config.targetLibrary;
     console.log('Injetando iOS na biblioteca:', lib, payload);
-    // Aqui você implementaria o fluxo nativo que aplica o payload na .lib
+    await this.injectIntoLibrary(lib, payload.encrypted);
+  }
+
+  async injectIntoLibrary(lib, encryptedPayload) {
+    console.log(`Injetando somente na biblioteca: ${lib}`);
+    // Substitua este trecho pelo fluxo nativo que aplica o payload diretamente na .lib.
     await this.sleep(200);
   }
 
