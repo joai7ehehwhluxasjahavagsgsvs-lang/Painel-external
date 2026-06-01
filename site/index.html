@@ -10,21 +10,38 @@
   <main class="page">
     <section class="hero">
       <h1>Painel Cheat</h1>
-      <p>Baixe o aplicativo desktop que reúne o painel web com backend local.</p>
+      <p>Baixe o aplicativo desktop e aproveite o painel web com backend local em um só pacote.</p>
       <div class="buttons">
-        <a class="button" href="../dist/Painel Cheat-0.1.0.AppImage">Download Linux AppImage</a>
+        <a class="button" href="../dist/Painel%20Cheat-0.1.0.AppImage">Download Linux AppImage</a>
         <a class="button" href="../dist/painel-external-app_0.1.0_amd64.deb">Download Linux DEB</a>
       </div>
     </section>
 
     <section class="info">
-      <h2>Como instalar</h2>
+      <h2>Instaladores disponíveis</h2>
+      <ul>
+        <li><strong>Linux AppImage</strong> — arquivo portátil para Linux.</li>
+        <li><strong>Linux DEB</strong> — instalador Debian/Ubuntu.</li>
+      </ul>
+      <p>Se você ainda não gerou os instaladores, acesse a raiz do projeto e rode <code>npm run dist</code>.</p>
+    </section>
+
+    <section class="info">
+      <h2>Como usar</h2>
       <ol>
-        <li>Execute <code>npm install</code> na raiz do projeto.</li>
-        <li>Use <code>npm run dist</code> para gerar os instaladores em <code>dist/</code>.</li>
-        <li>Coloque os arquivos gerados em <code>dist/</code> e retorne a esta página para baixar.</li>
+        <li>Baixe o instalador desejado.</li>
+        <li>Abra o arquivo no seu sistema e instale o app.</li>
+        <li>Execute o aplicativo para iniciar o servidor backend local automaticamente.</li>
       </ol>
-      <p>O aplicativo inicia o servidor backend local e carrega o painel Web automaticamente.</p>
+      <p>O app carrega o painel web local e mantém a interface disponível em modo desktop.</p>
+    </section>
+
+    <section class="info">
+      <h2>App Android</h2>
+      <p>O aplicativo Android está disponível no código-fonte em <code>cheat-panel/android/</code>. Para gerar o APK, use:</p>
+      <pre><code>cd cheat-panel/android
+./gradlew assembleDebug</code></pre>
+      <p>O APK será gerado em <code>cheat-panel/android/app/build/outputs/apk/debug/app-debug.apk</code>.</p>
     </section>
   </main>
 </body>
