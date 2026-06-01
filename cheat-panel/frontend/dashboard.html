@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Dual Cheat Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 FF Dual Cheat Pro</h1>
+            <div class="version-selector">
+                <select id="game-version" onchange="switchVersion()">
+                    <option value="auto">Detectar Automaticamente</option>
+                    <option value="normal">Free Fire Normal</option>
+                    <option value="max">Free Fire MAX</option>
+                </select>
+                <div class="status-indicator" id="status">Aguardando...</div>
+            </div>
+            <div class="config-group">
+                <label for="target-library">Biblioteca alvo:</label>
+                <input type="text" id="target-library" value="a.lib" placeholder="a.lib" />
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <!-- Seção de Detecção -->
+            <div class="feature-card detection-card">
+                <h2>🔍 Detecção de Jogo</h2>
+                <div class="detection-info">
+                    <p>Versão Detectada: <span id="detected-version">-</span></p>
+                    <p>Pacote: <span id="detected-package">-</span></p>
+                    <p>Status: <span id="detection-status">Não detectado</span></p>
+                </div>
+                <button class="btn-scan" onclick="scanForGame()">
+                    🔎 Escanear Jogos
+                </button>
+            </div>
+
+            <!-- Seção Aimbot -->
+            <div class="feature-card">
+                <h2>🎯 Aimbot</h2>
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" id="aimbot-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Ativado</span>
+                </div>
+                
+                <div class="config-group">
+                    <label>Modo de Mira:</label>
+                    <select id="aim-mode">
+                        <option value="neck">Pescoço</option>
+                        <option value="head">Cabeça</option>
+                        <option value="body">Corpo</option>
+                        <option value="auto">Automático</option>
+                        <option value="prediction">Predição</option>
+                    </select>
+                </div>
+
+                <div class="config-group">
+                    <label>FOV:</label>
+                    <input type="range" id="fov" min="1" max="180" value="15">
+                    <span id="fov-value">15°</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Suavidade:</label>
+                    <input type="range" id="smoothness" min="1" max="100" value="50">
+                    <span id="smoothness-value">50%</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Distância Máxima:</label>
+                    <input type="range" id="max-distance" min="50" max="500" value="300">
+                    <span id="distance-value">300m</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Controle de Recuo:</label>
+                    <input type="checkbox" id="recoil-control" checked>
+                    <span>Ativado</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Predição de Movimento:</label>
+                    <input type="checkbox" id="movement-prediction" checked>
+                    <span>Ativado</span>
+                </div>
+            </div>
+
+            <!-- Seção ESP -->
+            <div class="feature-card">
+                <h2>👁️ ESP / Wallhack</h2>
+                <div class="toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" id="esp-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Ativado</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Tipo de ESP:</label>
+                    <select id="esp-type">
+                        <option value="box">Box 2D</option>
+                        <option value="box3d">Box 3D</option>
+                        <option value="skeleton">Esqueleto</option>
+                        <option value="outline">Contorno</option>
+                        <option value="all">Completo</option>
+                    </select>
+                </div>
+
+                <div class="config-group">
+                    <label>Informações:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="show-distance" checked> Distância</label>
+                        <label><input type="checkbox" id="show-health" checked> Vida</label>
+                        <label><input type="checkbox" id="show-name" checked> Nome</label>
+                        <label><input type="checkbox" id="show-weapon"> Arma</label>
+                        <label><input type="checkbox" id="show-vehicle"> Veículo</label>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <label>Cor do ESP:</label>
+                    <input type="color" id="esp-color" value="#ff0000">
+                </div>
+
+                <div class="config-group">
+                    <label>Transparência:</label>
+                    <input type="range" id="esp-transparency" min="0" max="100" value="50">
+                    <span id="transparency-value">50%</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Distância Máxima ESP:</label>
+                    <input type="range" id="esp-distance" min="50" max="500" value="300">
+                    <span id="esp-distance-value">300m</span>
+                </div>
+            </div>
+
+            <!-- Seção Anti-Ban Avançado -->
+            <div class="feature-card">
+                <h2>🛡️ Anti-Ban Avançado</h2>
+                
+                <div class="config-group">
+                    <label>Nível de Proteção:</label>
+                    <select id="antiban-level">
+                        <option value="low">Baixo (Performance Máxima)</option>
+                        <option value="medium" selected>Médio (Balanceado)</option>
+                        <option value="high">Alto (Segurança Máxima)</option>
+                        <option value="extreme">Extremo (Modo Invisível)</option>
+                    </select>
+                </div>
+
+                <div class="config-group">
+                    <label>Métodos de Bypass:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="bypass-memory" checked> Memory Mapping</label>
+                        <label><input type="checkbox" id="bypass-hook" checked> API Hook</label>
+                        <label><input type="checkbox" id="bypass-proxy" checked> Proxy Injection</label>
+                        <label><input type="checkbox" id="bypass-kernel"> Kernel Mode</label>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <label>Delay de Injeção:</label>
+                    <input type="range" id="injection-delay" min="100" max="10000" value="2000">
+                    <span id="delay-value">2s</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Randomizar Endereços:</label>
+                    <input type="checkbox" id="randomize-addresses" checked>
+                    <span>Ativado</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Limpeza de Memória:</label>
+                    <input type="checkbox" id="memory-cleanup" checked>
+                    <span>Automática</span>
+                </div>
+
+                <div class="config-group">
+                    <label>Ofuscação de Tráfego:</label>
+                    <input type="checkbox" id="traffic-obfuscation" checked>
+                    <span>Ativado</span>
+                </div>
+            </div>
+
+            <!-- Painel de Controle -->
+            <div class="control-panel">
+                <div class="injection-options">
+                    <button class="btn-inject" onclick="injectCheat()">
+                        🚀 INJETAR CHEAT
+                    </button>
+                    
+                    <button class="btn-inject-stealth" onclick="injectStealth()">
+                        🕵️ INJEÇÃO SILENCIOSA
+                    </button>
+                    
+                    <button class="btn-stop" onclick="stopCheat()">
+                        ⏹️ PARAR
+                    </button>
+                    
+                    <button class="btn-clean" onclick="cleanMemory()">
+                        🧹 LIMPAR MEMÓRIA
+                    </button>
+                </div>
+
+                <div class="connection-info">
+                    <p>Status: <span id="connection-status">Offline</span></p>
+                    <p>Versão Detectada: <span id="game-version-display">-</span></p>
+                    <p>Pacote: <span id="game-package-display">-</span></p>
+                    <p>Ping: <span id="ping">0</span>ms</p>
+                    <p>Players detectados: <span id="players-count">0</span></p>
+                    <p>Proteção: <span id="protection-status">Ativa</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cheat-core.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
